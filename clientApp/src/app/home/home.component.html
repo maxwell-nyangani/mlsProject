@@ -1,3 +1,6 @@
 <p>
-  home works!
+    home works!
 </p>
+<ol>
+    <li *ngFor="let song of songs" [ngClass]="{'completed': song.completed}">{{song.title}} {{song.completed}}</li>
+</ol>

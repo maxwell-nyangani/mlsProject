@@ -1,0 +1,18 @@
+<p>
+    search works!
+</p>
+<form>
+    <input type="text" name="released-on">
+    <button title="Search">Search</button>
+</form>
+<div id="results">
+
+    <div *ngIf="results.len>0; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <ul>
+            <li *ngFor="let result of results"> Res here </li>
+        </ul>
+    </ng-template>
+    <ng-template #elseBlock>No results</ng-template>
+
+</div>
