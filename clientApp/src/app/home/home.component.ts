@@ -10,10 +10,13 @@ import { SongService } from "../song.service";
     styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-    songs: Song[];
+    songs: any;
 
     getSongs(): void {
-        this.songService.getSongs().subscribe(songs => (this.songs = songs));
+        this.songService.getSongs().subscribe(songs => {
+            console.log(songs);
+            return (this.songs = songs);
+        });
     }
     constructor(private songService: SongService) {}
     ngOnInit() {

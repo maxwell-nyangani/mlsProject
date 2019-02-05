@@ -10,9 +10,10 @@ import { catchError, map, tap } from "rxjs/operators";
 export class SongService {
     headers: HttpHeaders = new HttpHeaders().set(
         "Authorization",
-        "Digest maxwell:maxwell1234"
+        "Basic " + btoa("maxwell:maxwell1234")
     );
-    private songUrl = "https://jsonplaceholder.typicode.com/todos"; //"http://localhost:8070/v1/search?q=love"; // URL to web api
+    private songUrl =
+        /* "https://jsonplaceholder.typicode.com/todos"; // */ "/v1/search?q=love&format=json&pageLength=100"; // URL to web api
 
     /**
      * Handle Http operation that failed.
