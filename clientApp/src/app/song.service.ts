@@ -12,6 +12,7 @@ export class SongService {
         "Authorization",
         "Basic " + btoa("maxwell:maxwell1234")
     );
+    //.set("Accept", "multipart/mixed");
     private songUrl =
         /* "https://jsonplaceholder.typicode.com/todos"; // */ "/v1/search?q=love&format=json&pageLength=100"; // URL to web api
 
@@ -37,6 +38,7 @@ export class SongService {
         return this.http
             .get<Song[]>(this.songUrl, { headers: this.headers })
             .pipe(
+                map(resp => resp["results"]), //extracts burried data in a response JSON object
                 tap(_ => console.log("fetched heroes")),
                 catchError(this.handleError("getSongs", []))
             );

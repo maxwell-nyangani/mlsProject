@@ -10,6 +10,7 @@ import { StatisticsComponent } from "./statistics/statistics.component";
 import { PaidResultsComponent } from "./paid-results/paid-results.component";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AddHeaderInterceptor } from "./addHeaderInterceptor";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
@@ -19,7 +20,12 @@ import { AddHeaderInterceptor } from "./addHeaderInterceptor";
         StatisticsComponent,
         PaidResultsComponent
     ],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule
+    ],
     providers: [
         /*  {
             provide: HTTP_INTERCEPTORS,
