@@ -1,5 +1,5 @@
 <p>
-    home works!
+    Home
 </p>
 <ul [@songs]="songs.length">
     <li *ngFor="let song of songs" [ngClass]="{'completed': song.completed}">{{song.uri}} {{song.matches[0].path}}</li>

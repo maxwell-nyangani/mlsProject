@@ -10,8 +10,8 @@
     <div *ngIf="results.length>0; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
         <ul>
-            <li *ngFor="let result of results" (click)="viewSongDetails(result.href)" class="result-list-item">
-                <h5>{{ result.uri }}</h5>
+            <li *ngFor="let result of results" class="result-list-item">
+                <h5 class="result-list-item-header">{{ result.uri }}</h5>
                 <div>
                     <p *ngFor="let match of result.matches">{{match.path}} <br>
                         <span *ngFor="let matchText of match['match-text']">

@@ -17,6 +17,8 @@ export class SongService {
     private songUrl =
         /* "https://jsonplaceholder.typicode.com/todos"; // */ "/v1/search?q=love&format=json&pageLength=100"; // URL to web api
 
+    constructor(private http: HttpClient) {}
+
     /**
      * Handle Http operation that failed.
      * Let the app continue.
@@ -58,5 +60,30 @@ export class SongService {
                 catchError(this.handleError("getSongs", []))
             );
     }
-    constructor(private http: HttpClient) {}
+
+    getSongDoc(docId: string): any {
+        return this.http
+            .get<any>(docId, {
+                headers: new HttpHeaders()
+                    .set("Content-Type", "text/xml")
+                    .set(
+                        "Authorization",
+                        "Basic " + btoa("maxwell:maxwell1234")
+                    )
+                    .append(
+                        "Access-Control-Allow-Methods",
+                        "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+                    )
+                    .append("Access-Control-Allow-Origin", "*")
+                    .append(
+                        "Access-Control-Allow-Headers",
+                        "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method"
+                    )
+            })
+            .pipe(
+                //map(resp => resp["results"]), //extracts burried data in a response JSON object
+                tap(_ => console.log("fetched the results of =>" + docId)),
+                catchError(this.handleError("getDestails", []))
+            );
+    }
 }
