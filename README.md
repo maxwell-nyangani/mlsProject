@@ -1,6 +1,6 @@
 # mlsProject
 
-Experimental client app that communicates with MarLogic Server
+Experimental client app that communicates with MarkLogic Server at `http://e6db8651.ngrok.io` NB: the server maybe down at times :)
 
 ## Development server
 
