@@ -1,6 +1,6 @@
 {
     "/v1/*": {
-        "target": "http://365daafa.ngrok.io",
+        "target": "http://e6db8651.ngrok.io",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true

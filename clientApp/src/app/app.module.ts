@@ -11,6 +11,8 @@ import { PaidResultsComponent } from "./paid-results/paid-results.component";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AddHeaderInterceptor } from "./addHeaderInterceptor";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule } from "@angular/forms";
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
     declarations: [
@@ -18,13 +20,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         HomeComponent,
         SearchComponent,
         StatisticsComponent,
-        PaidResultsComponent
+        PaidResultsComponent,
+        DetailsComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        FormsModule
     ],
     providers: [
         /*  {

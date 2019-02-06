@@ -2,15 +2,27 @@
     search works!
 </p>
 <form>
-    <input type="text" name="released-on">
-    <button title="Search">Search</button>
+    <input type="text" [(ngModel)]="searchQuery" name="query">
+    <button title="Search" (click)="searchMusicDB(searchQuery)">Search</button>
 </form>
 <div id="results">
 
-    <div *ngIf="results.len>0; then thenBlock else elseBlock"></div>
+    <div *ngIf="results.length>0; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
         <ul>
-            <li *ngFor="let result of results"> Res here </li>
+            <li *ngFor="let result of results" (click)="viewSongDetails(result.href)" class="result-list-item">
+                <h5>{{ result.uri }}</h5>
+                <div>
+                    <p *ngFor="let match of result.matches">{{match.path}} <br>
+                        <span *ngFor="let matchText of match['match-text']">
+                            <div *ngIf="matchText.highlight; then thenBlock else elseBlock"></div>
+                            <ng-template #thenBlock><b class="highlight-text">{{matchText.highlight}}</b></ng-template>
+                            <ng-template #elseBlock>{{matchText}}</ng-template>
+                        </span>
+                    </p>
+
+                </div>
+            </li>
         </ul>
     </ng-template>
     <ng-template #elseBlock>No results</ng-template>

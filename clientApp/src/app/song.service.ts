@@ -13,6 +13,7 @@ export class SongService {
         "Basic " + btoa("maxwell:maxwell1234")
     );
     //.set("Accept", "multipart/mixed");
+    private baseUrl = "/v1/search";
     private songUrl =
         /* "https://jsonplaceholder.typicode.com/todos"; // */ "/v1/search?q=love&format=json&pageLength=100"; // URL to web api
 
@@ -36,10 +37,24 @@ export class SongService {
 
     getSongs(): Observable<Song[]> {
         return this.http
-            .get<Song[]>(this.songUrl, { headers: this.headers })
+            .get<Song[]>(this.songUrl, {
+                headers: this.headers
+            })
             .pipe(
                 map(resp => resp["results"]), //extracts burried data in a response JSON object
                 tap(_ => console.log("fetched heroes")),
+                catchError(this.handleError("getSongs", []))
+            );
+    }
+
+    searchFor(query: string): Observable<Song[]> {
+        return this.http
+            .get<Song[]>(this.baseUrl + "?q=" + encodeURI(query), {
+                headers: this.headers //.set("Accept", "multipart/mixed")
+            })
+            .pipe(
+                map(resp => resp["results"]), //extracts burried data in a response JSON object
+                tap(_ => console.log("fetched the results of =>" + query)),
                 catchError(this.handleError("getSongs", []))
             );
     }
